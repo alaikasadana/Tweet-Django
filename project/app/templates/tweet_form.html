@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Home
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5 d-flex justify-content-center">
+    
+    <div class="card shadow-lg p-4 tweet-card">
+
+        <!-- Heading -->
+        <h2 class="text-center mb-4 fw-bold">
+            {% if form.instance.pk %} 
+                ✏️ Edit Tweet 
+            {% else %}
+                📝 Create Tweet
+            {% endif %}
+        </h2>
+
+        <!-- Form -->
+        <form action="" method="post" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+            
+            <div class="form-fields">
+                {{ form.as_p }}
+            </div>
+
+            <button class="btn btn-warning w-100 mt-3 fw-semibold" type="submit">
+                Submit
+            </button>
+        </form>
+
+        <!-- Back Button -->
+        <div class="text-center mt-3">
+            <a href="{% url 'tweet_list' %}" class="btn btn-outline-secondary btn-sm">
+                ← Back to Tweet List
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Custom CSS -->
+<style>
+    body {
+        background: #f5f7fa;
+    }
+
+    .tweet-card {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 16px;
+        background: #ffffff;
+        transition: 0.3s ease;
+    }
+
+    .tweet-card:hover {
+        transform: translateY(-5px);
+    }
+
+    h2 {
+        color: #333;
+        letter-spacing: 0.5px;
+    }
+
+    /* Form Styling */
+    .form-fields p {
+        margin-bottom: 15px;
+    }
+
+    .form-fields input,
+    .form-fields textarea,
+    .form-fields select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #ced4da;
+        transition: all 0.2s ease;
+        font-size: 14px;
+    }
+
+    .form-fields input:focus,
+    .form-fields textarea:focus,
+    .form-fields select:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 5px rgba(255, 193, 7, 0.4);
+        outline: none;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    button {
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    a.btn-outline-secondary {
+        border-radius: 8px;
+    }
+</style>
+
+{% endblock %}
