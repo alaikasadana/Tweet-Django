@@ -146,11 +146,11 @@ Home
         <div class="tweet-user">
           @{{ tweet.user.username }}
         </div>
-
+     
         <div class="tweet-text">
           {{ tweet.text }}
         </div>
-
+       {% if tweet.user == user %}
         <div class="tweet-actions">
           <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-edit">
             Edit
@@ -159,6 +159,8 @@ Home
             Delete
           </a>
         </div>
+
+        {% endif  %}
 
       </div>
     </div>
